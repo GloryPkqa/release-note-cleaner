@@ -1,12 +1,12 @@
 ---
 name: release-note-cleaner
-description: Audit and clean unintended production notes and placeholder copy in user-facing websites, slides, and documents. Use when asked to remove AI-added annotations, gray notes, editorial residue, or pre-release placeholders (including 中文灰色备注、AI示意小字、占位文案). Preserve meaningful disclosures and accessibility text; do not judge by color or keywords alone.
+description: Audit or remove unwanted AI-added captions, gray production notes and placeholder copy from websites, slides or documents. Use for Chinese or English requests such as 去掉AI主题插画说明、文创概念示意小字, or remove AI illustration captions. Follow named targets and scope, avoid unrelated content, and do not delete solely by color or keywords.
 license: MIT
 ---
 
 # Release Note Cleaner
 
-Help an editor remove production-process residue from a user-facing artifact without removing information the audience needs. Work in the user's language; support Chinese, English, and mixed-language artifacts. This skill does not identify whether a work was AI-generated and does not promise automatic classification.
+Help remove unwanted AI-added captions, explanatory notes, production-process residue and placeholders from user-facing work as the user requests, without unnecessarily removing unrelated information. Apply the same workflow to Chinese-only, English-only, and mixed-language content; no translation or second language is required. Keep edited content in its original language and respond in the user's language unless requested otherwise. This skill does not identify whether a work was AI-generated and does not promise automatic classification.
 
 ## Scope and mode
 
@@ -18,11 +18,11 @@ Help an editor remove production-process residue from a user-facing artifact wit
 
 For each candidate, use its exact text, placement, surrounding content, audience function, and the user's specific request. Classify it as:
 
-1. **Production residue**: evidence shows the text addresses the maker or is an accidentally exposed task, internal comment, or unfinished placeholder; removing it does not remove audience-relevant information. In an authorized edit, remove the smallest supported span; replace only if a truthful, supported replacement is available.
-2. **Audience information**: keep information that helps a reader understand or use the artifact, including sources, citations, credits, copyright, provenance or AI disclosures, historical accuracy, concept-vs-real distinctions, data qualifications, dates and units, legal/safety/privacy/price details, controls, validation, or accessible names and descriptions. Preserve the meaning and relationships of mixed text, links, and labels.
-3. **Uncertain**: if purpose, factual effect, authorization, or context cannot be established, keep it and report it for review. A speculative claim that a disclosure is legally required is not evidence; a vague instruction to remove AI notes is not evidence that every disclosure is disposable.
+1. **Requested note or production residue**: in an authorized edit, remove identifiable notes that match a user-named target or category, such as AI illustration captions, as well as confirmed accidentally exposed internal tasks and unfinished placeholders. A targeted AI caption need not be an internal note or redundant to qualify. Remove the smallest supported span; replace only if a truthful, supported replacement is available.
+2. **Audience information**: for general cleanup, keep information that helps a reader understand or use the artifact, including sources, citations, credits, copyright, provenance or AI disclosures, historical accuracy, concept-vs-real distinctions, data qualifications, dates and units, legal/safety/privacy/price details, controls, validation, or accessible names and descriptions. Preserve the meaning and relationships of unrelated mixed text, links, and labels.
+3. **Uncertain**: for general cleanup, if purpose, factual effect, authorization, or context cannot be established, keep it and report it for review. A speculative claim that a disclosure is legally required is not evidence; a vague instruction to remove AI notes is not evidence that every disclosure is disposable.
 
-An explicit instruction targeting a specific item gives stronger evidence of intent than a general cleanup. Honor the requested scope; explain material loss of meaning or risk of misleading the audience when apparent, and offer a faithful alternative. Do not invent a legal requirement or block routine edits simply because a label mentions AI. If the effect cannot be established, preserve the item and surface the uncertainty.
+An explicit request to remove a specific identifiable label or a clearly defined class of labels authorizes removing matching labels in scope, including AI or concept captions; do not require proof that each is an internal note or redundant. A request such as “去掉 AI 生成的灰色插画和文创示意小字” or “remove the AI illustration captions” authorizes deleting matching peripheral captions in the requested area, including “AI主题插画” or “AI concept illustration”. The requested area may be a single page or the whole site. Do not remove a work title, main prose, source credit, operational warning, or unrelated label merely because it contains the same words or is gray. Preserve surrounding content and the authorized scope, and mention an apparent material loss of meaning or misleading impression. Do not invent a legal requirement or replacement fact. If a particular target cannot be identified reliably as part of the requested class, leave it unchanged and report the ambiguity. For a general cleanup without a specific target or class, retain and report candidates whose purpose or effect is uncertain.
 
 ## Apply and verify
 

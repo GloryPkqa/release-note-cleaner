@@ -18,9 +18,13 @@ This pack is a **proposed, human-scored evaluation**, not evidence that an agent
 
 ## Test prompts / 测试提示
 
-Run each case on a fresh copy; run once in each language. Replace `{file}` with the selected fixture copy.
+Run each case on a fresh copy; run once in each language. Each single-language fixture should also work independently when the other language's files are absent. Replace `{file}` with the selected fixture copy.
 
-每项测试均从全新副本开始，中英文各运行一次；将 `{file}` 替换为所选样本副本。
+每项测试均从全新副本开始，中英文各运行一次；另一语言的文件不存在时，单语言样本也应能独立处理。将 `{file}` 替换为所选样本副本。
+
+Cases A–E use the corresponding `exhibition` fixture. Case F instead uses a fresh copy of exactly one standalone site directory, `fixtures/category.zh/` or `fixtures/category.en/`, as `{site}`; the other language directory is not required and should not be supplied to the tested agent.
+
+A–E 使用对应的 `exhibition` 样本。F 单独复制 `fixtures/category.zh/` 或 `fixtures/category.en/` 的完整目录作为 `{site}`；不需要另一语言的目录，也不应向被测代理提供另一语言版本。
 
 ### A — Audit only / 仅审查
 
@@ -52,6 +56,16 @@ Run each case on a fresh copy; run once in each language. Replace `{file}` with 
 
 > 请只清理 `{file}` 中的 `#release-preview`，不要修改共享 JavaScript 文件。需要修改共享值才能完成的内容请保留并报告限制。
 
+### F — Explicit category across a site / 按类别清理整个网站
+
+Run the relevant prompt on a fresh copy of that language's two-page site. This is a requested category of captions, not a request to remove words everywhere. The exact text is not claimed to be an internal production instruction, and the request does not assert that each caption is redundant.
+
+请在对应语言的双页面网站副本上运行。这里指定的是图片旁的说明类别，不是删除全文中出现的词；请求没有声称这些文字是内部制作指令，也没有逐条确认其内容重复。
+
+> In `{site}`, remove the small AI-themed illustration and AI creative concept illustration captions next to the images across the whole site. Keep the actual work titles, source credits, form labels, and search guidance. Preserve unrelated content and report changes.
+
+> 请在 `{site}` 的整个网站中，去掉图片旁的“AI主题插画”和“AI文创概念示意”这类小字说明。保留作品标题、资料来源、表单标签和搜索提示；其他内容不要改，并说明改动。
+
 ## Scoring / 评分
 
 `GOLD.md` defines expected actions. Mark each decision **correct**, **incorrect**, or **unverifiable**, with the exact evidence and actual output. In case B count:
@@ -72,6 +86,6 @@ Report numerators and denominators, per language and category. Treat unintended 
 
 ## Fixture integrity check / 样本完整性检查
 
-`python evals/validate_fixtures.py` checks that the bundled files and test anchors exist. It does not run an agent, judge semantic decisions, inspect a browser, or measure the skill's effectiveness.
+`python evals/validate_fixtures.py` checks that the bundled files and test anchors exist, including the two standalone case F sites. It does not run an agent, judge semantic decisions, inspect a browser, or measure the skill's effectiveness.
 
 `python evals/validate_fixtures.py` 只检查样本文件和测试锚点，不会运行代理、评判语义、检查浏览器，也不能测出技能的实际效果。

@@ -1,10 +1,10 @@
 # Release Note Cleaner
 
-**Find production notes that leaked into the finished work, while keeping information the audience needs.**
+**Remove unwanted AI-added captions and production notes while preserving unrelated content.**
 
 [中文说明](README.zh-CN.md) · [The skill](skills/release-note-cleaner/SKILL.md) · [Evaluation fixtures](evals/)
 
-Release Note Cleaner is an [Agent Skill](https://agentskills.io/specification) for reviewing public-facing websites, presentations and documents. It helps an AI assistant distinguish internal instructions and unfinished placeholder copy from useful captions, source credits, disclosures and interface guidance. It works with Chinese and English text, including mixed-language content.
+Release Note Cleaner is an [Agent Skill](https://agentskills.io/specification) for reviewing public-facing websites, presentations and documents. It helps an AI assistant remove unwanted AI illustration captions, concept labels, maker-facing notes and unfinished placeholder copy, while avoiding unrelated titles, source credits and interface guidance. It can clean a Chinese-only or English-only artifact independently, as well as mixed-language content; it does not require translation or a second language.
 
 It is a set of instructions for an agent—not a standalone scanner, image editor, browser extension, plagiarism detector or classifier with a guaranteed error rate. The agent still needs access to the artifact and appropriate tools to inspect or edit it.
 
@@ -17,10 +17,11 @@ The skill uses a candidate's context and purpose, not its color, size, or a keyw
 | Decision | Example | In a cleanup task |
 | --- | --- | --- |
 | Confirmed production residue | A designer's instruction accidentally rendered on a public page | Remove the smallest supported part within the requested scope. |
+| User-requested caption | “AI concept illustration”, when the user requests removing AI illustration captions | Remove the matching caption; do not remove an unrelated title or source credit. |
 | Audience information | Source credit, product limitation, historical-image disclaimer, form hint or screen-reader label | Keep its meaning and relationships. |
 | Uncertain | “AI concept illustration” with insufficient context | Leave it in place and report the uncertainty. |
 
-An explicit request to edit a particular label receives more weight than a broad request to clean AI notes. The agent should explain an apparent loss of meaning or misleading impression, rather than inventing a replacement fact. The skill does not make legal determinations or require all AI disclosures to remain in every situation.
+An explicit request to remove an identifiable label or a clearly defined class of labels authorizes removing matching items in scope, including AI or concept labels. The agent should mention any apparent material loss of meaning or misleading impression and must not invent a replacement fact. The skill does not make legal determinations or require all AI disclosures to remain in every situation.
 
 ## Install
 
@@ -40,9 +41,11 @@ Ask naturally or explicitly invoke `$release-note-cleaner`:
 
 > Audit this landing page for production notes that accidentally appear in the final page. Report candidates only; don't edit files.
 
-> Use `$release-note-cleaner` to clean the Chinese and English versions of this page. Keep source credits, functional hints and meaningful image captions.
+> Use `$release-note-cleaner` to clean this English page. Keep source credits, functional hints and meaningful image captions.
 
 > 请清理首页里不该交付给访客的制作备注；先保留有来源、真实性或版权作用的说明，不确定的列出来。
+
+> 删除整个网站图片下方的 AI 主题插画和文创概念示意说明，保留作品标题和图片来源。
 
 > Remove the internal draft note on the pricing page only; leave other routes and languages unchanged.
 
