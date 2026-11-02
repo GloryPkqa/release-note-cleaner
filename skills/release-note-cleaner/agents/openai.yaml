@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release Note Cleaner"
+  short_description: "Clean stray notes while preserving meaningful context"
+  default_prompt: "Use $release-note-cleaner to review unintended production notes while preserving meaningful disclosures."
